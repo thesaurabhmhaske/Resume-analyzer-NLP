@@ -1,5 +1,3 @@
-# Developed by dnoobnerd [https://dnoobnerd.netlify.app]    Made with Streamlit
-
 
 ###### Packages Used ######
 import streamlit as st # core package used in this project
