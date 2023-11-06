@@ -3,22 +3,12 @@
 
 ###### Packages Used ######
 import streamlit as st # core package used in this project
-import pandas as pd
 import base64, random
 import time,datetime
-import pymysql
-import os
-import socket
-import platform
-import geocoder
-import secrets
 import io,random
-import plotly.express as px # to create visualisations at the admin session
-import plotly.graph_objects as go
-from geopy.geocoders import Nominatim
 # libraries used to parse the pdf files
 from pyresparser import ResumeParser
-from pdfminer3.layout import LAParams, LTTextBox
+from pdfminer3.layout import LAParams
 from pdfminer3.pdfpage import PDFPage
 from pdfminer3.pdfinterp import PDFResourceManager
 from pdfminer3.pdfinterp import PDFPageInterpreter
@@ -119,22 +109,6 @@ def run():
         act_mail = st.text_input('Mail*')
         act_mob  = st.text_input('Mobile Number*')
         act_jd  = st.text_area('Job Description*')
-        sec_token = secrets.token_urlsafe(12)
-        host_name = socket.gethostname()
-        ip_add = socket.gethostbyname(host_name)
-        dev_user = os.getlogin()
-        os_name_ver = platform.system() + " " + platform.release()
-        g = geocoder.ip('me')
-        latlong = g.latlng
-        geolocator = Nominatim(user_agent="http")
-        location = geolocator.reverse(latlong, language='en')
-        address = location.raw['address']
-        cityy = address.get('city', '')
-        statee = address.get('state', '')
-        countryy = address.get('country', '')  
-        city = cityy
-        state = statee
-        country = countryy
 
 
         # Upload Resume
@@ -167,7 +141,6 @@ def run():
                 try:
                     st.text('Name: '+resume_data['name'])
                     st.text('Email: ' + resume_data['email'])
-                    st.text('Job Description: ' + resume_data['jd'])
                     st.text('Contact: ' + resume_data['mobile_number'])
                     st.text('Degree: '+str(resume_data['degree']))                    
                     st.text('Resume pages: '+str(resume_data['no_of_pages']))
